@@ -12,5 +12,12 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+enableFeaturePreview("VERSION_CATALOGS")
+
+apply {
+    from("dependencies/catalog.gradle.kts")
+}
+
 rootProject.name = "War of suits"
 include ':app'
