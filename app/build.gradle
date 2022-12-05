@@ -34,14 +34,17 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.3.1'
+        kotlinCompilerExtensionVersion composeVersion
     }
 }
 
 dependencies {
+    implementation project(":features:home")
 
     implementation libs.androidxActivityCompose
     implementation libs.androidxAppcompat
+    implementation libs.androidxNavigationCompose
+
     testImplementation libs.junit
     androidTestImplementation libs.androidxTextExtJunit
     androidTestImplementation libs.espressoCore
