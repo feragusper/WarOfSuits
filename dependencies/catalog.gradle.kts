@@ -24,6 +24,7 @@ dependencyResolutionManagement {
             alias("androidxComposeUI").to("androidx.compose.ui", "ui").versionRef("androidxCompose")
             alias("androidxNavigationCompose").to("androidx.navigation", "navigation-compose").versionRef("androidxNavigationCompose")
             alias("androidxComposeMaterial").to("androidx.compose.material", "material").versionRef("androidxCompose")
+            alias("androidxComposeUITooling").to("androidx.compose.ui", "ui-tooling").versionRef("androidxCompose")
 
             // Unit Test
             alias("junit").to("junit", "junit").versionRef("junit")

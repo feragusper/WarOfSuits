@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_title">War of suits</string>
+    <string name="home_button_quick_start">Quick start</string>
+    <string name="match_title">Hello Match!</string>
+</resources>

@@ -1,10 +1,11 @@
 package com.feragusper.home.navigation
 
-class HomeNavigator() {
+class HomeNavigator(
+    val navigateToMatch: () -> Unit,
+) {
 
     companion object {
-        // Routes
-        const val ROOT = "home_graph"
-        const val HOME = "home"
+        const val ROUTE = "home_graph"
+        const val START = "menu"
     }
 }
