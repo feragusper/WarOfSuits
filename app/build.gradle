@@ -1,16 +1,18 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
     namespace 'com.feragusper.warofsuits'
-    compileSdk 33
+    compileSdk androidSdkVersion
 
     defaultConfig {
         applicationId "com.feragusper.warofsuits"
-        minSdk 21
-        targetSdk 33
+        minSdk androidMinSdkVersion
+        targetSdk androidSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -45,6 +47,8 @@ dependencies {
     implementation libs.androidxActivityCompose
     implementation libs.androidxAppcompat
     implementation libs.androidxNavigationCompose
+    implementation libs.hilt
+    kapt libs.hiltCompiler
 
     testImplementation libs.junit
     androidTestImplementation libs.androidxTextExtJunit

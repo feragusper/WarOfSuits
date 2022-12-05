@@ -8,6 +8,8 @@ dependencyResolutionManagement {
             version("androidxActivityCompose", "1.6.1")
             version("androidxCompose", "1.3.1")
             version("androidxNavigationCompose", "2.5.3")
+            version("hilt", "2.42")
+            version("hiltNavigationCompose", "1.0.0")
 
             // Unit Test
             version("junit", "4.13.2")
@@ -25,6 +27,9 @@ dependencyResolutionManagement {
             alias("androidxNavigationCompose").to("androidx.navigation", "navigation-compose").versionRef("androidxNavigationCompose")
             alias("androidxComposeMaterial").to("androidx.compose.material", "material").versionRef("androidxCompose")
             alias("androidxComposeUITooling").to("androidx.compose.ui", "ui-tooling").versionRef("androidxCompose")
+            alias("hilt").to("com.google.dagger", "hilt-android").versionRef("hilt")
+            alias("hiltCompiler").to("com.google.dagger", "hilt-compiler").versionRef("hilt")
+            alias("hiltNavigationCompose").to("androidx.hilt", "hilt-navigation-compose").versionRef("hiltNavigationCompose")
 
             // Unit Test
             alias("junit").to("junit", "junit").versionRef("junit")
