@@ -21,6 +21,6 @@ apply {
 
 rootProject.name = "War of suits"
 include ':app'
-include 'features:home'
-include 'features:match'
-include ':architecture'
+include 'features:home:presentation'
+include 'features:match:presentation'
+include ':architecture:presentation'

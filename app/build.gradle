@@ -41,8 +41,8 @@ android {
 }
 
 dependencies {
-    implementation project(":features:home")
-    implementation project(":features:match")
+    implementation project(":features:home:presentation")
+    implementation project(":features:match:presentation")
 
     implementation libs.androidxActivityCompose
     implementation libs.androidxAppcompat
