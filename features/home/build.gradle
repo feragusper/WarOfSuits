@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation project(":architecture")
+
     implementation libs.androidxCoreKtx
     implementation libs.androidxComposeUI
     implementation libs.androidxNavigationCompose
