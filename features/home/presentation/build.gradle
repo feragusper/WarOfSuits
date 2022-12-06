@@ -51,4 +51,8 @@ dependencies {
     implementation libs.hiltNavigationCompose
     implementation libs.hilt
     kapt libs.hiltCompiler
+
+    testImplementation libs.junit
+    testImplementation libs.mockk
+    testImplementation libs.coroutinesTest
 }

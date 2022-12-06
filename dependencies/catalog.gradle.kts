@@ -13,6 +13,8 @@ dependencyResolutionManagement {
 
             // Unit Test
             version("junit", "4.13.2")
+            version("mockk", "1.10.6")
+            version("coroutinesTest", "1.4.3")
 
             // Android Test
             version("androidxTextExtJunit", "1.1.4")
@@ -33,6 +35,8 @@ dependencyResolutionManagement {
 
             // Unit Test
             alias("junit").to("junit", "junit").versionRef("junit")
+            alias("mockk").to("io.mockk", "mockk").versionRef("mockk")
+            alias("coroutinesTest").to("org.jetbrains.kotlinx", "kotlinx-coroutines-test").versionRef("coroutinesTest")
 
             // Android Test
             alias("androidxTextExtJunit").to("androidx.test.ext", "junit").versionRef("androidxTextExtJunit")
