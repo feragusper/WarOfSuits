@@ -10,6 +10,7 @@ import com.feragusper.match.presentation.mvi.MatchIntent
 import com.feragusper.match.presentation.mvi.MatchResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
@@ -21,18 +22,20 @@ class MatchProcessHolder @Inject constructor(
 
     override fun processIntent(intent: MatchIntent): Flow<MatchResult> =
         when (intent) {
-            MatchIntent.Open -> processOpen()
+            MatchIntent.NewMatch -> processNewMatch()
             MatchIntent.NextRound -> processNextRound()
+            MatchIntent.Exit -> processExit()
         }
 
     private fun processNextRound(): Flow<MatchResult> = flow<MatchResult> {
         emit(MatchResult.MatchUpdated(nextRoundUseCase.execute()))
     }.catchTyped(MatchException::class) { emit(MatchResult.Failure) }.flowOn(dispatcherProvider.default())
 
-    private fun processOpen(): Flow<MatchResult> = flow<MatchResult> {
+    private fun processNewMatch(): Flow<MatchResult> = flow<MatchResult> {
         createMatchUseCase.execute()
         emit(MatchResult.MatchCreated)
     }.catchTyped(MatchException::class) { emit(MatchResult.Failure) }.flowOn(dispatcherProvider.default())
 
+    private fun processExit(): Flow<MatchResult> = flowOf(MatchResult.NavigateUp)
 
 }

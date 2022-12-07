@@ -6,4 +6,6 @@
     <string name="match_button_continue">Continue</string>
     <string name="match_finished">Finished!</string>
     <string name="match_turn_win">Win</string>
+    <string name="match_button_restart">Restart</string>
+    <string name="match_button_exit">Exit</string>
 </resources>

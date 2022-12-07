@@ -15,7 +15,7 @@ class MatchViewModel @Inject constructor(
 ) : MVIViewModel<MatchIntent, MatchViewState, MatchResult, MatchNavigator>(initialState = MatchViewState(loading = true)) {
 
     init {
-        intents().trySend(MatchIntent.Open)
+        intents().trySend(MatchIntent.NewMatch)
     }
 
     override lateinit var navigator: MatchNavigator
@@ -23,7 +23,7 @@ class MatchViewModel @Inject constructor(
     override suspend fun transformer(intent: MatchIntent) = processHolder.processIntent(intent)
 
     override suspend fun reducer(previous: MatchViewState, result: MatchResult): MatchViewState = when (result) {
-        MatchResult.MatchCreated -> previous.copy(loading = false)
+        MatchResult.MatchCreated -> MatchViewState(loading = false)
         MatchResult.Failure -> previous.copy(error = true)
         is MatchResult.MatchUpdated -> with(result) {
             previous.copy(
@@ -36,6 +36,10 @@ class MatchViewModel @Inject constructor(
                 firstPlayerScore = match.score.first.toString(),
                 secondPlayerScore = match.score.second.toString(),
             )
+        }
+        MatchResult.NavigateUp -> {
+            navigator.navigateUp()
+            previous
         }
     }
 }

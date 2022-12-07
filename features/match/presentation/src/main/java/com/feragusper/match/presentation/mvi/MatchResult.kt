@@ -7,4 +7,5 @@ sealed class MatchResult : MVIResult {
     class MatchUpdated(val match: Match) : MatchResult()
     object MatchCreated : MatchResult()
     object Failure : MatchResult()
+    object NavigateUp : MatchResult()
 }

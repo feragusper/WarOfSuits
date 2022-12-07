@@ -15,7 +15,7 @@ fun MainNavigationGraph(startDestination: String = HomeNavigator.ROUTE) {
     val matchNavigator = MatchNavigator(navController)
 
     NavHost(navController, startDestination) {
-        homeNavigationGraph(HomeNavigator(matchNavigator.actionNavigateToMatch))
+        homeNavigationGraph(HomeNavigator(matchNavigator.navigateToMatch))
         matchNavigationGraph(matchNavigator)
     }
 }

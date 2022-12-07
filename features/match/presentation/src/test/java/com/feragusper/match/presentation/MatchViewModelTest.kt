@@ -10,6 +10,7 @@ import com.feragusper.match.presentation.mvi.MatchViewState
 import com.feragusper.match.presentation.process.MatchProcessHolder
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
@@ -56,7 +57,7 @@ class MatchViewModelTest {
         every { createMatchUseCase.execute() } answers {}
 
         val state = runBlocking {
-            chanel.trySend(MatchIntent.Open)
+            chanel.trySend(MatchIntent.NewMatch)
             state.first()
         }
 
@@ -92,5 +93,18 @@ class MatchViewModelTest {
         state.secondPlayerWon shouldBeEqualTo true
         state.firstPlayerScore shouldBeEqualTo "0"
         state.secondPlayerScore shouldBeEqualTo "1"
+    }
+
+    @Test
+    fun `WHEN the exit is requested THEN it navigates up`() {
+        every { navigator.navigateUp() } answers {}
+        every { createMatchUseCase.execute() } answers {}
+
+        runBlocking {
+            chanel.trySend(MatchIntent.Exit)
+            state.first()
+        }
+
+        verify { navigator.navigateUp() }
     }
 }

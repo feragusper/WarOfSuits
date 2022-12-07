@@ -43,6 +43,18 @@ data class MatchViewState(
                         style = MaterialTheme.typography.h1,
                         textAlign = TextAlign.Center
                     )
+                    Button({ intent(MatchIntent.NewMatch) }) {
+                        Text(
+                            text = stringResource(R.string.match_button_restart),
+                            style = MaterialTheme.typography.button
+                        )
+                    }
+                    Button({ intent(MatchIntent.Exit) }) {
+                        Text(
+                            text = stringResource(R.string.match_button_exit),
+                            style = MaterialTheme.typography.button
+                        )
+                    }
                 } else {
                     Text(
                         text = stringResource(R.string.match_title),

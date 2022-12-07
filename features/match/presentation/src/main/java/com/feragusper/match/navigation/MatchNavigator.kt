@@ -5,7 +5,8 @@ import com.feragusper.architecture.presentation.navigation.MVINavigator
 
 class MatchNavigator(navController: NavController) : MVINavigator {
 
-    val actionNavigateToMatch: () -> Unit = { navController.navigate(ROUTE) }
+    val navigateToMatch: () -> Unit = { navController.navigate(ROUTE) }
+    val navigateUp: () -> Unit = { navController.navigateUp() }
 
     companion object {
         const val ROUTE = "match_graph"
