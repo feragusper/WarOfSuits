@@ -15,12 +15,15 @@ import com.feragusper.match.domain.model.Card
 import com.feragusper.match.presentation.R
 
 data class MatchViewState(
+    val suitPriority: List<String> = listOf(),
     val loading: Boolean = false,
     val error: Boolean = false,
     val displayFinished: Boolean = false,
     val firstPlayerCard: Card? = null,
+    val firstPlayerWon: Boolean? = null,
     val secondPlayerCard: Card? = null,
     val firstPlayerScore: String = "0",
+    val secondPlayerWon: Boolean? = null,
     val secondPlayerScore: String = "0"
 ) : MVIViewState<MatchIntent> {
 
@@ -46,6 +49,11 @@ data class MatchViewState(
                         style = MaterialTheme.typography.h1,
                         textAlign = TextAlign.Center
                     )
+                    Text(
+                        text = suitPriority.toString(),
+                        style = MaterialTheme.typography.subtitle1,
+                        textAlign = TextAlign.Center
+                    )
                     Row {
                         Text(
                             text = "$firstPlayerScore - $secondPlayerScore",
@@ -54,11 +62,34 @@ data class MatchViewState(
                         )
                     }
                     Row {
-                        Text(
-                            text = "$firstPlayerCard - $secondPlayerCard",
-                            style = MaterialTheme.typography.body2,
-                            textAlign = TextAlign.Center
-                        )
+                        Column {
+                            Text(
+                                text = "$firstPlayerCard",
+                                style = MaterialTheme.typography.body2,
+                                textAlign = TextAlign.Center
+                            )
+                            if (firstPlayerWon == true) {
+                                Text(
+                                    text = stringResource(id = R.string.match_turn_win),
+                                    style = MaterialTheme.typography.body1,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                        }
+                        Column {
+                            Text(
+                                text = "$secondPlayerCard",
+                                style = MaterialTheme.typography.body2,
+                                textAlign = TextAlign.Center
+                            )
+                            if (secondPlayerWon == true) {
+                                Text(
+                                    text = stringResource(id = R.string.match_turn_win),
+                                    style = MaterialTheme.typography.body1,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                        }
                     }
                     Button({ intent(MatchIntent.NextRound) }) {
                         Text(

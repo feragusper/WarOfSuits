@@ -33,6 +33,7 @@ class MatchProcessorTest {
         result.currentRound shouldBeEqualTo null
         result.score shouldBeEqualTo Pair(0, 0)
         result.finished shouldBeEqualTo false
+        result.suitPriority shouldBeEqualTo priority
 
     }
 
@@ -46,11 +47,12 @@ class MatchProcessorTest {
 
         result.currentRound?.turns?.first?.card?.value shouldBeEqualTo 2
         result.currentRound?.turns?.first?.card?.suit shouldBeEqualTo "spades"
+        result.currentRound?.turns?.first?.won shouldBeEqualTo false
         result.currentRound?.turns?.second?.card?.value shouldBeEqualTo 3
         result.currentRound?.turns?.second?.card?.suit shouldBeEqualTo "spades"
+        result.currentRound?.turns?.second?.won shouldBeEqualTo true
         result.score shouldBeEqualTo Pair(0, 1)
         result.finished shouldBeEqualTo false
-
     }
 
     @Test
@@ -64,8 +66,10 @@ class MatchProcessorTest {
 
         result.currentRound?.turns?.first?.card?.value shouldBeEqualTo 3
         result.currentRound?.turns?.first?.card?.suit shouldBeEqualTo "hearts"
+        result.currentRound?.turns?.first?.won shouldBeEqualTo true
         result.currentRound?.turns?.second?.card?.value shouldBeEqualTo 3
         result.currentRound?.turns?.second?.card?.suit shouldBeEqualTo "diamonds"
+        result.currentRound?.turns?.second?.won shouldBeEqualTo false
         result.score shouldBeEqualTo Pair(1, 1)
         result.finished shouldBeEqualTo false
 

@@ -69,10 +69,13 @@ class MatchViewModelTest {
         every { createMatchUseCase.execute() } answers {}
         every { nextRoundUseCase.execute() } returns match
         every { match.finished } returns false
+        every { match.suitPriority } returns listOf("spades", "hearts")
         every { match.currentRound?.turns?.first?.card } returns Card(3, "spades")
+        every { match.currentRound?.turns?.first?.won } returns false
         every { match.currentRound?.turns?.second?.card } returns Card(6, "hearts")
+        every { match.currentRound?.turns?.second?.won } returns true
         every { match.score.first } returns 0
-        every { match.score.second } returns 0
+        every { match.score.second } returns 1
 
         val state = runBlocking {
             chanel.trySend(MatchIntent.NextRound)
@@ -82,9 +85,12 @@ class MatchViewModelTest {
         state.loading shouldBeEqualTo false
         state.error shouldBeEqualTo false
         state.displayFinished shouldBeEqualTo false
+        state.suitPriority shouldBeEqualTo listOf("spades", "hearts")
         state.firstPlayerCard shouldBeEqualTo Card(3, "spades")
+        state.firstPlayerWon shouldBeEqualTo false
         state.secondPlayerCard shouldBeEqualTo Card(6, "hearts")
+        state.secondPlayerWon shouldBeEqualTo true
         state.firstPlayerScore shouldBeEqualTo "0"
-        state.secondPlayerScore shouldBeEqualTo "0"
+        state.secondPlayerScore shouldBeEqualTo "1"
     }
 }

@@ -11,7 +11,8 @@ class MatchMapper @Inject constructor() {
     fun transform(match: MatchEntity) = Match(
         currentRound = transform(match.currentRound),
         score = Pair(match.score.first, match.score.second),
-        finished = match.finished
+        finished = match.finished,
+        suitPriority = match.suitPriority
     )
 
     private fun transform(roundEntity: MatchEntity.RoundEntity?) = roundEntity?.let {
@@ -20,7 +21,7 @@ class MatchMapper @Inject constructor() {
         )
     }
 
-    private fun transform(turn: MatchEntity.RoundEntity.TurnEntity) = Match.Round.Turn(transform(turn.card))
+    private fun transform(turn: MatchEntity.RoundEntity.TurnEntity) = Match.Round.Turn(transform(turn.card), turn.won)
 
     private fun transform(cardEntity: CardEntity) = Card(cardEntity.value, cardEntity.suit)
 }

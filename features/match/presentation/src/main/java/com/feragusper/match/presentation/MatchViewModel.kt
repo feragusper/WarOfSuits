@@ -27,9 +27,12 @@ class MatchViewModel @Inject constructor(
         MatchResult.Failure -> previous.copy(error = true)
         is MatchResult.MatchUpdated -> with(result) {
             previous.copy(
+                suitPriority = match.suitPriority,
                 displayFinished = match.finished,
-                firstPlayerCard = match.currentRound?.turns?.first?.card,
                 secondPlayerCard = match.currentRound?.turns?.second?.card,
+                firstPlayerWon = match.currentRound?.turns?.first?.won,
+                firstPlayerCard = match.currentRound?.turns?.first?.card,
+                secondPlayerWon = match.currentRound?.turns?.second?.won,
                 firstPlayerScore = match.score.first.toString(),
                 secondPlayerScore = match.score.second.toString(),
             )

@@ -18,10 +18,7 @@ class MatchProcessor @Inject constructor() {
         when (currentMatchState.state) {
             MatchState.State.ON_GOING -> with(currentMatchState) {
                 if (players.first.deck.isNotEmpty()) {
-                    val firstPlayerCard = players.first.deck.first()
-                    val secondPlayerCard = players.second.deck.first()
-                    resolveRound(firstPlayerCard, secondPlayerCard)
-                    currentRound = RoundEntity(TurnEntity(firstPlayerCard) to TurnEntity(secondPlayerCard))
+                    resolveRound(players.first.deck.first(), players.second.deck.first())
                     players.first.deck.removeFirst()
                     players.second.deck.removeFirst()
                 } else {
@@ -44,8 +41,13 @@ class MatchProcessor @Inject constructor() {
                 firstPlayerCard.value to secondPlayerCard.value
             }
         }
-        currentMatchState.players.first.score += if (first > second) 1 else 0
-        currentMatchState.players.second.score += if (second > first) 1 else 0
+        val firstPlayerWon = first > second
+        if (firstPlayerWon) {
+            currentMatchState.players.first.score++
+        } else {
+            currentMatchState.players.second.score++
+        }
+        currentMatchState.currentRound = RoundEntity(TurnEntity(firstPlayerCard, firstPlayerWon) to TurnEntity(secondPlayerCard, !firstPlayerWon))
     }
 
     fun newMatch(decks: Pair<DeckEntity, DeckEntity>, suitPriority: List<String>) {
@@ -69,7 +71,8 @@ class MatchProcessor @Inject constructor() {
         fun toMatchEntity(): MatchEntity = MatchEntity(
             currentRound = currentRound,
             score = players.first.score to players.second.score,
-            finished = state == State.FINISHED
+            finished = state == State.FINISHED,
+            suitPriority = suitPriority
         )
 
         data class Player(
