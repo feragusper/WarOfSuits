@@ -17,6 +17,8 @@
             <option value="$PROJECT_DIR$/features/home" />
             <option value="$PROJECT_DIR$/features/home/presentation" />
             <option value="$PROJECT_DIR$/features/match" />
+            <option value="$PROJECT_DIR$/features/match/data" />
+            <option value="$PROJECT_DIR$/features/match/domain" />
             <option value="$PROJECT_DIR$/features/match/presentation" />
           </set>
         </option>

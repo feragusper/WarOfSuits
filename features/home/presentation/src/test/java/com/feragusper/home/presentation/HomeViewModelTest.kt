@@ -13,13 +13,15 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
 class HomeViewModelTest {
 
-    private var mockNavigator: HomeNavigator = mockk()
+    private var navigator: HomeNavigator = mockk()
 
     private lateinit var viewModel: HomeViewModel
     private lateinit var chanel: Channel<HomeIntent>
@@ -30,20 +32,26 @@ class HomeViewModelTest {
     fun setUp() {
         Dispatchers.setMain(Dispatchers.Unconfined)
         viewModel = HomeViewModel(HomeProcessHolder())
-        viewModel.navigator = mockNavigator
+        viewModel.navigator = navigator
         chanel = viewModel.intents()
         state = viewModel.states()
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
+    }
+
     @Test
     fun `WHEN the quick match button is clicked THEN it should navigate to match`() {
-        every { mockNavigator.navigateToMatch() } answers {}
+        every { navigator.navigateToMatch() } answers {}
 
         runBlocking {
             chanel.trySend(HomeIntent.QuickMatch)
             state.first()
         }
 
-        verify { mockNavigator.navigateToMatch() }
+        verify { navigator.navigateToMatch() }
     }
 }

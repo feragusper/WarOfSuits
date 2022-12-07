@@ -16,6 +16,6 @@ fun MainNavigationGraph(startDestination: String = HomeNavigator.ROUTE) {
 
     NavHost(navController, startDestination) {
         homeNavigationGraph(HomeNavigator(matchNavigator.actionNavigateToMatch))
-        matchNavigationGraph()
+        matchNavigationGraph(matchNavigator)
     }
 }

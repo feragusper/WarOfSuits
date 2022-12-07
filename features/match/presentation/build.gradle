@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -38,9 +40,20 @@ android {
 }
 
 dependencies {
+    api project(":architecture:presentation")
+    implementation project(":features:match:domain")
     implementation libs.androidxCoreKtx
     implementation libs.androidxComposeUI
     implementation libs.androidxNavigationCompose
     implementation libs.androidxComposeMaterial
     implementation libs.androidxComposeUITooling
+
+    implementation libs.hiltNavigationCompose
+    implementation libs.hilt
+    kapt libs.hiltCompiler
+
+    testImplementation libs.junit
+    testImplementation libs.mockk
+    testImplementation libs.coroutinesTest
+    testImplementation libs.kluent
 }

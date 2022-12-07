@@ -1,8 +1,9 @@
 package com.feragusper.match.navigation
 
 import androidx.navigation.NavController
+import com.feragusper.architecture.presentation.navigation.MVINavigator
 
-class MatchNavigator(navController: NavController) {
+class MatchNavigator(navController: NavController) : MVINavigator {
 
     val actionNavigateToMatch: () -> Unit = { navController.navigate(ROUTE) }
 

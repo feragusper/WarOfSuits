@@ -3,4 +3,6 @@
     <string name="home_title">War of suits</string>
     <string name="home_button_quick_start">Quick start</string>
     <string name="match_title">Hello Match!</string>
+    <string name="match_button_continue">Continue</string>
+    <string name="match_finished">Finished!</string>
 </resources>

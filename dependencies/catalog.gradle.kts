@@ -15,6 +15,7 @@ dependencyResolutionManagement {
             version("junit", "4.13.2")
             version("mockk", "1.10.6")
             version("coroutinesTest", "1.4.3")
+            version("kluent", "1.65")
 
             // Android Test
             version("androidxTextExtJunit", "1.1.4")
@@ -37,6 +38,7 @@ dependencyResolutionManagement {
             alias("junit").to("junit", "junit").versionRef("junit")
             alias("mockk").to("io.mockk", "mockk").versionRef("mockk")
             alias("coroutinesTest").to("org.jetbrains.kotlinx", "kotlinx-coroutines-test").versionRef("coroutinesTest")
+            alias("kluent").to("org.amshove.kluent", "kluent").versionRef("kluent")
 
             // Android Test
             alias("androidxTextExtJunit").to("androidx.test.ext", "junit").versionRef("androidxTextExtJunit")

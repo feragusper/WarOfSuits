@@ -23,4 +23,6 @@ rootProject.name = "War of suits"
 include ':app'
 include 'features:home:presentation'
 include 'features:match:presentation'
+include 'features:match:domain'
+include 'features:match:data'
 include ':architecture:presentation'
