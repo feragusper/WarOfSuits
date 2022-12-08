@@ -32,8 +32,14 @@ data class MatchViewState(
     val secondPlayerCard: Card? = null,
     val firstPlayerScore: String = "0",
     val secondPlayerWon: Boolean? = null,
-    val secondPlayerScore: String = "0"
+    val secondPlayerScore: String = "0",
+    val result: MatchResult? = null
 ) : MVIViewState<MatchIntent> {
+    enum class MatchResult {
+        WIN,
+        DRAW,
+        LOOSE
+    }
 
     @Composable
     override fun Compose(intent: (MatchIntent) -> Unit) {
@@ -69,8 +75,12 @@ data class MatchViewState(
             Text(
                 modifier = Modifier.padding(top = 48.dp),
                 text = stringResource(
-                    if (firstPlayerWon == true)
-                        R.string.match_you_won else R.string.match_you_loose
+                    when (result) {
+                        MatchResult.WIN -> R.string.match_you_win
+                        MatchResult.DRAW -> R.string.match_draw
+                        MatchResult.LOOSE -> R.string.match_you_loose
+                        null -> throw IllegalStateException("Can't determine a result yet")
+                    }
                 ),
                 style = MaterialTheme.typography.h4,
                 color = MaterialTheme.colors.secondary,

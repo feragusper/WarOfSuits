@@ -29,6 +29,13 @@ class MatchViewModel @Inject constructor(
             previous.copy(
                 suitPriority = match.suitPriority,
                 displayFinished = match.finished,
+                result = if (match.score.first > match.score.second) {
+                    MatchViewState.MatchResult.WIN
+                } else if (match.score.first == match.score.second) {
+                    MatchViewState.MatchResult.DRAW
+                } else {
+                    MatchViewState.MatchResult.LOOSE
+                },
                 secondPlayerCard = match.currentRound?.turns?.second?.card,
                 firstPlayerWon = match.currentRound?.turns?.first?.won,
                 firstPlayerCard = match.currentRound?.turns?.first?.card,
