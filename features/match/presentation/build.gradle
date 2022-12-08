@@ -41,6 +41,7 @@ android {
 
 dependencies {
     api project(":architecture:presentation")
+    implementation project(":design")
     implementation project(":features:match:domain")
     implementation libs.androidxCoreKtx
     implementation libs.androidxComposeUI

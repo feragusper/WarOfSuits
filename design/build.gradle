@@ -1,16 +1,14 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
 }
 
 android {
-    compileSdk androidSdkVersion
+    compileSdk 33
 
     defaultConfig {
-        minSdk androidMinSdkVersion
-        targetSdk androidSdkVersion
+        minSdk 21
+        targetSdk 33
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -40,20 +38,7 @@ android {
 }
 
 dependencies {
-    implementation project(":architecture:presentation")
-    implementation project(":design")
-
-    implementation libs.androidxCoreKtx
     implementation libs.androidxComposeUI
-    implementation libs.androidxNavigationCompose
     implementation libs.androidxComposeMaterial
     implementation libs.androidxComposeUITooling
-
-    implementation libs.hiltNavigationCompose
-    implementation libs.hilt
-    kapt libs.hiltCompiler
-
-    testImplementation libs.junit
-    testImplementation libs.mockk
-    testImplementation libs.coroutinesTest
 }

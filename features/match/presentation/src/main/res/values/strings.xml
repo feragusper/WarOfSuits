@@ -2,10 +2,12 @@
 <resources>
     <string name="home_title">War of suits</string>
     <string name="home_button_quick_start">Quick start</string>
-    <string name="match_title">Hello Match!</string>
     <string name="match_button_continue">Continue</string>
-    <string name="match_finished">Finished!</string>
-    <string name="match_turn_win">Win</string>
+    <string name="match_you_won">🏆 You won! 🏆</string>
     <string name="match_button_restart">Restart</string>
     <string name="match_button_exit">Exit</string>
+    <string name="match_score_label_you">You</string>
+    <string name="match_score_label_opponent">Opponent</string>
+    <string name="match_suit_priority_title">Suit priority</string>
+    <string name="match_you_loose">You loose 😞</string>
 </resources>

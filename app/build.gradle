@@ -43,6 +43,7 @@ android {
 dependencies {
     implementation project(":features:home:presentation")
     implementation project(":features:match:presentation")
+    implementation project(":design")
 
     implementation libs.androidxActivityCompose
     implementation libs.androidxAppcompat
