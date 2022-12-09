@@ -51,6 +51,8 @@ dependencies {
     implementation libs.hilt
     kapt libs.hiltCompiler
 
-    androidTestImplementation libs.androidxTextExtJunit
+    androidTestImplementation libs.junit
     androidTestImplementation libs.espressoCore
+    androidTestImplementation libs.androidxComposeTest
+    androidTestImplementation libs.androidxTextExtJunit
 }

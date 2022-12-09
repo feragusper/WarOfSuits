@@ -20,6 +20,7 @@ dependencyResolutionManagement {
             // Android Test
             version("androidxTextExtJunit", "1.1.4")
             version("espresso", "3.5.0")
+            version("dexmakerMockito", "2.28.1")
 
             // Libraries
             // Main
@@ -43,6 +44,7 @@ dependencyResolutionManagement {
             // Android Test
             alias("androidxTextExtJunit").to("androidx.test.ext", "junit").versionRef("androidxTextExtJunit")
             alias("espressoCore").to("androidx.test.espresso", "espresso-core").versionRef("espresso")
+            alias("androidxComposeTest").to("androidx.compose.ui", "ui-test-junit4").versionRef("androidxCompose")
         }
     }
 }
