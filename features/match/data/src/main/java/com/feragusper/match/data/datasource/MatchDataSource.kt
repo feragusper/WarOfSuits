@@ -4,7 +4,7 @@ import com.feragusper.match.data.entity.MatchEntity
 
 interface MatchDataSource {
 
-    fun createMatch()
+    fun createMatch(): MatchEntity
     fun nextRound(): MatchEntity
 
 }

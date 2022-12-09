@@ -23,7 +23,10 @@ class MatchViewModel @Inject constructor(
     override suspend fun transformer(intent: MatchIntent) = processHolder.processIntent(intent)
 
     override suspend fun reducer(previous: MatchViewState, result: MatchResult): MatchViewState = when (result) {
-        MatchResult.MatchCreated -> MatchViewState(loading = false)
+        is MatchResult.MatchCreated -> MatchViewState(
+            loading = false,
+            suitPriority = result.match.suitPriority
+        )
         MatchResult.Failure -> previous.copy(error = true)
         is MatchResult.MatchUpdated -> with(result) {
             previous.copy(
@@ -36,9 +39,9 @@ class MatchViewModel @Inject constructor(
                 } else {
                     MatchViewState.MatchResult.LOOSE
                 },
-                secondPlayerCard = match.currentRound?.turns?.second?.card,
+                secondPlayerCard = match.currentRound?.turns?.second?.card?.let { MatchViewState.Card(it.value, it.suit) },
                 firstPlayerWon = match.currentRound?.turns?.first?.won,
-                firstPlayerCard = match.currentRound?.turns?.first?.card,
+                firstPlayerCard = match.currentRound?.turns?.first?.card?.let { MatchViewState.Card(it.value, it.suit) },
                 secondPlayerWon = match.currentRound?.turns?.second?.won,
                 firstPlayerScore = match.score.first.toString(),
                 secondPlayerScore = match.score.second.toString(),

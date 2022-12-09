@@ -32,8 +32,7 @@ class MatchProcessHolder @Inject constructor(
     }.catchTyped(MatchException::class) { emit(MatchResult.Failure) }.flowOn(dispatcherProvider.default())
 
     private fun processNewMatch(): Flow<MatchResult> = flow<MatchResult> {
-        createMatchUseCase.execute()
-        emit(MatchResult.MatchCreated)
+        emit(MatchResult.MatchCreated(createMatchUseCase.execute()))
     }.catchTyped(MatchException::class) { emit(MatchResult.Failure) }.flowOn(dispatcherProvider.default())
 
     private fun processExit(): Flow<MatchResult> = flowOf(MatchResult.NavigateUp)

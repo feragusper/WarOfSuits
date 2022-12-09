@@ -26,8 +26,9 @@ class InMemoryDataSource @Inject constructor(private val matchProcessor: MatchPr
         }
     }
 
-    override fun createMatch() {
+    override fun createMatch(): MatchEntity {
         matchProcessor.newMatch(newDeck.dealCards(), suits.shuffled())
+        return matchProcessor.matchStateEntity
     }
 
     override fun nextRound(): MatchEntity {

@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import com.feragusper.architecture.presentation.mvi.MVIViewState
 import com.feragusper.design.theme.WarOfSuitsTheme
 import com.feragusper.design.ui.PrimaryButton
-import com.feragusper.match.domain.model.Card
 import com.feragusper.match.presentation.R
 
 data class MatchViewState(
@@ -35,11 +34,14 @@ data class MatchViewState(
     val secondPlayerScore: String = "0",
     val result: MatchResult? = null
 ) : MVIViewState<MatchIntent> {
+
     enum class MatchResult {
         WIN,
         DRAW,
         LOOSE
     }
+
+    data class Card(val value: Int, val suit: String)
 
     @Composable
     override fun Compose(intent: (MatchIntent) -> Unit) {
@@ -193,9 +195,9 @@ data class MatchViewState(
 private fun MatchOngoingViewPreview() {
     WarOfSuitsTheme {
         MatchViewState(
-            firstPlayerCard = Card(2, "spades"),
+            firstPlayerCard = MatchViewState.Card(2, "spades"),
             firstPlayerWon = true,
-            secondPlayerCard = Card(3, "hearts"),
+            secondPlayerCard = MatchViewState.Card(3, "hearts"),
             firstPlayerScore = "3",
             secondPlayerWon = false,
             secondPlayerScore = "2",
