@@ -43,6 +43,9 @@ class MatchViewModelTest {
         viewModel.navigator = navigator
         chanel = viewModel.intents()
         state = viewModel.states()
+
+        every { createMatchUseCase.execute() } returns match
+        every { match.suitPriority } returns listOf("spades", "hearts")
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -53,9 +56,6 @@ class MatchViewModelTest {
 
     @Test
     fun `WHEN the view is opened THEN it create a match`() {
-
-        every { createMatchUseCase.execute() } answers {}
-
         val state = runBlocking {
             chanel.trySend(MatchIntent.NewMatch)
             state.first()
@@ -63,14 +63,13 @@ class MatchViewModelTest {
 
         state.loading shouldBeEqualTo false
         state.error shouldBeEqualTo false
+        state.suitPriority shouldBeEqualTo listOf("spades", "hearts")
     }
 
     @Test
     fun `WHEN the next round is requested THEN it update the state with proper values`() {
-        every { createMatchUseCase.execute() } answers {}
         every { nextRoundUseCase.execute() } returns match
         every { match.finished } returns false
-        every { match.suitPriority } returns listOf("spades", "hearts")
         every { match.currentRound?.turns?.first?.card } returns Card(3, "spades")
         every { match.currentRound?.turns?.first?.won } returns false
         every { match.currentRound?.turns?.second?.card } returns Card(6, "hearts")
@@ -86,10 +85,9 @@ class MatchViewModelTest {
         state.loading shouldBeEqualTo false
         state.error shouldBeEqualTo false
         state.displayFinished shouldBeEqualTo false
-        state.suitPriority shouldBeEqualTo listOf("spades", "hearts")
-        state.firstPlayerCard shouldBeEqualTo Card(3, "spades")
+        state.firstPlayerCard shouldBeEqualTo MatchViewState.Card(3, "spades")
         state.firstPlayerWon shouldBeEqualTo false
-        state.secondPlayerCard shouldBeEqualTo Card(6, "hearts")
+        state.secondPlayerCard shouldBeEqualTo MatchViewState.Card(6, "hearts")
         state.secondPlayerWon shouldBeEqualTo true
         state.firstPlayerScore shouldBeEqualTo "0"
         state.secondPlayerScore shouldBeEqualTo "1"
@@ -98,7 +96,6 @@ class MatchViewModelTest {
     @Test
     fun `WHEN the exit is requested THEN it navigates up`() {
         every { navigator.navigateUp() } answers {}
-        every { createMatchUseCase.execute() } answers {}
 
         runBlocking {
             chanel.trySend(MatchIntent.Exit)
