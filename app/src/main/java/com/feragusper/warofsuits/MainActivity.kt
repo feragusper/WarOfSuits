@@ -3,7 +3,7 @@ package com.feragusper.warofsuits
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.feragusper.design.theme.WarOfSuitsTheme
+import com.feragusper.warofsuits.design.theme.WarOfSuitsTheme
 import com.feragusper.warofsuits.navigation.MainNavigationGraph
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -4,9 +4,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.feragusper.design.theme.WarOfSuitsTheme
-import com.feragusper.match.presentation.mvi.MatchIntent
-import com.feragusper.match.presentation.mvi.MatchViewState
+import com.feragusper.warofsuits.design.theme.WarOfSuitsTheme
+import com.feragusper.warofsuits.match.presentation.mvi.MatchIntent
+import com.feragusper.warofsuits.match.presentation.mvi.MatchViewState
 import org.junit.Rule
 import org.junit.Test
 

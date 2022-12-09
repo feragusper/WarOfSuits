@@ -3,10 +3,10 @@ package com.feragusper.warofsuits.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.feragusper.home.navigation.HomeNavigator
-import com.feragusper.home.navigation.homeNavigationGraph
-import com.feragusper.match.navigation.MatchNavigator
-import com.feragusper.match.navigation.matchNavigationGraph
+import com.feragusper.warofsuits.home.navigation.HomeNavigator
+import com.feragusper.warofsuits.home.navigation.homeNavigationGraph
+import com.feragusper.warofsuits.match.navigation.MatchNavigator
+import com.feragusper.warofsuits.match.navigation.matchNavigationGraph
 
 @Composable
 fun MainNavigationGraph(startDestination: String = HomeNavigator.ROUTE) {
